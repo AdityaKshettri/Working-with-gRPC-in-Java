@@ -1,6 +1,9 @@
 package com.aditya.project.grpc.client;
 
-import com.proto.dummy.DummyServiceGrpc;
+import com.proto.greet.GreetRequest;
+import com.proto.greet.GreetResponse;
+import com.proto.greet.GreetServiceGrpc;
+import com.proto.greet.Greeting;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -15,9 +18,28 @@ public class GreetingClient {
                 .build();
 
         System.out.println("Creating stub!");
-        DummyServiceGrpc.DummyServiceBlockingStub syncClient = DummyServiceGrpc.newBlockingStub(channel);
+        // DummyServiceGrpc.DummyServiceBlockingStub syncClient = DummyServiceGrpc.newBlockingStub(channel);
+        // DummyServiceGrpc.DummyServiceFutureStub asyncClient = DummyServiceGrpc.newFutureStub(channel);
 
-        System.out.println("Shutting down stub!");
+        // Created a Greet Service Client
+        GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
+
+        // Created a Greeting
+        Greeting greeting = Greeting.newBuilder()
+                .setFirstName("Aditya")
+                .setLastName("Kshettri")
+                .build();
+
+        // Created a GreetRequest
+        GreetRequest request = GreetRequest.newBuilder()
+                .setGreeting(greeting)
+                .build();
+
+        // Call the RPC and get the GreetResponse
+        GreetResponse response = greetClient.greet(request);
+        System.out.println(response.getResult());
+
+        System.out.println("Shutting down channel!");
         channel.shutdown();
     }
 }
