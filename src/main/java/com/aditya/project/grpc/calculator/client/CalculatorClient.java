@@ -3,6 +3,8 @@ package com.aditya.project.grpc.calculator.client;
 import com.proto.calculator.CalculatorServiceGrpc;
 import com.proto.calculator.ComputeAverageRequest;
 import com.proto.calculator.ComputeAverageResponse;
+import com.proto.calculator.FindMaximumRequest;
+import com.proto.calculator.FindMaximumResponse;
 import com.proto.calculator.PrimeNoDecompositionRequest;
 import com.proto.calculator.SumRequest;
 import com.proto.calculator.SumResponse;
@@ -27,7 +29,8 @@ public class CalculatorClient {
                 .build();
         //doUnaryCall(channel);
         //doStreamingServerCall(channel);
-        doStreamingClientCall(channel);
+        //doStreamingClientCall(channel);
+        doBiDiStreamingCall(channel);
         channel.shutdown();
     }
 
@@ -74,6 +77,44 @@ public class CalculatorClient {
                 .forEach(number -> requestObserver.onNext(ComputeAverageRequest.newBuilder()
                     .setNumber(number)
                     .build()));
+        requestObserver.onCompleted();
+        try {
+            latch.await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doBiDiStreamingCall(ManagedChannel channel) {
+        CalculatorServiceGrpc.CalculatorServiceStub asyncClient = CalculatorServiceGrpc.newStub(channel);
+        CountDownLatch latch = new CountDownLatch(1);
+        StreamObserver<FindMaximumResponse> responseObserver = new StreamObserver<FindMaximumResponse>() {
+            @Override
+            public void onNext(FindMaximumResponse value) {
+                System.out.println("Got new max from server : " + value.getMaximum());
+            }
+            @Override
+            public void onError(Throwable t) {
+                latch.countDown();
+            }
+            @Override
+            public void onCompleted() {
+                System.out.println("Server is done sending data.");
+            }
+        };
+        StreamObserver<FindMaximumRequest> requestObserver = asyncClient.findMaximum(responseObserver);
+        Arrays.asList(100, 20, 345, 40)
+                .forEach(number -> {
+                    System.out.println("Sending number : " + number);
+                    requestObserver.onNext(FindMaximumRequest.newBuilder()
+                            .setNumber(number)
+                            .build());
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
         requestObserver.onCompleted();
         try {
             latch.await(3, TimeUnit.SECONDS);

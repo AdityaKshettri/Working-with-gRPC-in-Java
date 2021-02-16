@@ -44,6 +44,16 @@ public final class Calculator {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_calculator_ComputeAverageResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_FindMaximumRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_FindMaximumRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_FindMaximumResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_FindMaximumResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -61,14 +71,19 @@ public final class Calculator {
       "sitionResponse\022\024\n\014prime_factor\030\001 \001(\005\"\'\n\025" +
       "ComputeAverageRequest\022\016\n\006number\030\001 \001(\005\")\n" +
       "\026ComputeAverageResponse\022\017\n\007average\030\001 \001(\001" +
-      "2\231\002\n\021CalculatorService\0228\n\003Sum\022\026.calculat" +
-      "or.SumRequest\032\027.calculator.SumResponse\"\000" +
-      "\022m\n\024PrimeNoDecomposition\022\'.calculator.Pr" +
-      "imeNoDecompositionRequest\032(.calculator.P" +
-      "rimeNoDecompositionResponse\"\0000\001\022[\n\016Compu" +
-      "teAverage\022!.calculator.ComputeAverageReq" +
-      "uest\032\".calculator.ComputeAverageResponse" +
-      "\"\000(\001B\030\n\024com.proto.calculatorP\001b\006proto3"
+      "\"$\n\022FindMaximumRequest\022\016\n\006number\030\001 \001(\005\"&" +
+      "\n\023FindMaximumResponse\022\017\n\007maximum\030\001 \001(\0052\357" +
+      "\002\n\021CalculatorService\0228\n\003Sum\022\026.calculator" +
+      ".SumRequest\032\027.calculator.SumResponse\"\000\022m" +
+      "\n\024PrimeNoDecomposition\022\'.calculator.Prim" +
+      "eNoDecompositionRequest\032(.calculator.Pri" +
+      "meNoDecompositionResponse\"\0000\001\022[\n\016Compute" +
+      "Average\022!.calculator.ComputeAverageReque" +
+      "st\032\".calculator.ComputeAverageResponse\"\000" +
+      "(\001\022T\n\013FindMaximum\022\036.calculator.FindMaxim" +
+      "umRequest\032\037.calculator.FindMaximumRespon" +
+      "se\"\000(\0010\001B\030\n\024com.proto.calculatorP\001b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -110,6 +125,18 @@ public final class Calculator {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_calculator_ComputeAverageResponse_descriptor,
         new java.lang.String[] { "Average", });
+    internal_static_calculator_FindMaximumRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_calculator_FindMaximumRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_FindMaximumRequest_descriptor,
+        new java.lang.String[] { "Number", });
+    internal_static_calculator_FindMaximumResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_calculator_FindMaximumResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_FindMaximumResponse_descriptor,
+        new java.lang.String[] { "Maximum", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
