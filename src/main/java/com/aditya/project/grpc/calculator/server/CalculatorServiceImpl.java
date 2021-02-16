@@ -1,6 +1,8 @@
 package com.aditya.project.grpc.calculator.server;
 
 import com.proto.calculator.CalculatorServiceGrpc;
+import com.proto.calculator.ComputeAverageRequest;
+import com.proto.calculator.ComputeAverageResponse;
 import com.proto.calculator.PrimeNoDecompositionRequest;
 import com.proto.calculator.PrimeNoDecompositionResponse;
 import com.proto.calculator.SumRequest;
@@ -33,5 +35,30 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
             }
         }
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<ComputeAverageRequest> computeAverage(StreamObserver<ComputeAverageResponse> responseObserver) {
+        return new StreamObserver<ComputeAverageRequest>() {
+            int sum = 0;
+            int count = 0;
+            @Override
+            public void onNext(ComputeAverageRequest value) {
+                sum += value.getNumber();
+                count += 1;
+            }
+            @Override
+            public void onError(Throwable t) {
+                //do nothing for now
+            }
+            @Override
+            public void onCompleted() {
+                double average = (double) sum/count;
+                responseObserver.onNext(ComputeAverageResponse.newBuilder()
+                        .setAverage(average)
+                        .build());
+                responseObserver.onCompleted();
+            }
+        };
     }
 }

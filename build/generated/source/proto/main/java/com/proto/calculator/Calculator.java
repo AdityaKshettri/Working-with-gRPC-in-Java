@@ -34,6 +34,16 @@ public final class Calculator {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_calculator_PrimeNoDecompositionResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_ComputeAverageRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_ComputeAverageRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_ComputeAverageResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_ComputeAverageResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -48,13 +58,17 @@ public final class Calculator {
       "\rsecond_number\030\002 \001(\005\"!\n\013SumResponse\022\022\n\ns" +
       "um_result\030\001 \001(\005\"-\n\033PrimeNoDecompositionR" +
       "equest\022\016\n\006number\030\001 \001(\005\"4\n\034PrimeNoDecompo" +
-      "sitionResponse\022\024\n\014prime_factor\030\001 \001(\0052\274\001\n" +
-      "\021CalculatorService\0228\n\003Sum\022\026.calculator.S" +
-      "umRequest\032\027.calculator.SumResponse\"\000\022m\n\024" +
-      "PrimeNoDecomposition\022\'.calculator.PrimeN" +
-      "oDecompositionRequest\032(.calculator.Prime" +
-      "NoDecompositionResponse\"\0000\001B\030\n\024com.proto" +
-      ".calculatorP\001b\006proto3"
+      "sitionResponse\022\024\n\014prime_factor\030\001 \001(\005\"\'\n\025" +
+      "ComputeAverageRequest\022\016\n\006number\030\001 \001(\005\")\n" +
+      "\026ComputeAverageResponse\022\017\n\007average\030\001 \001(\001" +
+      "2\231\002\n\021CalculatorService\0228\n\003Sum\022\026.calculat" +
+      "or.SumRequest\032\027.calculator.SumResponse\"\000" +
+      "\022m\n\024PrimeNoDecomposition\022\'.calculator.Pr" +
+      "imeNoDecompositionRequest\032(.calculator.P" +
+      "rimeNoDecompositionResponse\"\0000\001\022[\n\016Compu" +
+      "teAverage\022!.calculator.ComputeAverageReq" +
+      "uest\032\".calculator.ComputeAverageResponse" +
+      "\"\000(\001B\030\n\024com.proto.calculatorP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -84,6 +98,18 @@ public final class Calculator {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_calculator_PrimeNoDecompositionResponse_descriptor,
         new java.lang.String[] { "PrimeFactor", });
+    internal_static_calculator_ComputeAverageRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_calculator_ComputeAverageRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_ComputeAverageRequest_descriptor,
+        new java.lang.String[] { "Number", });
+    internal_static_calculator_ComputeAverageResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_calculator_ComputeAverageResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_ComputeAverageResponse_descriptor,
+        new java.lang.String[] { "Average", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
