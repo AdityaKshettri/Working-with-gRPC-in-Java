@@ -249,6 +249,7 @@ public final class CalculatorServiceGrpc {
      * <pre>
      * Error Handling
      * This RPC will throw an exception if sent number is -ve
+     * The Error Type thrown here will be INVALID_ARGUMENT
      * </pre>
      */
     public void squareRoot(com.proto.calculator.SquareRootRequest request,
@@ -347,6 +348,7 @@ public final class CalculatorServiceGrpc {
      * <pre>
      * Error Handling
      * This RPC will throw an exception if sent number is -ve
+     * The Error Type thrown here will be INVALID_ARGUMENT
      * </pre>
      */
     public void squareRoot(com.proto.calculator.SquareRootRequest request,
@@ -389,6 +391,7 @@ public final class CalculatorServiceGrpc {
      * <pre>
      * Error Handling
      * This RPC will throw an exception if sent number is -ve
+     * The Error Type thrown here will be INVALID_ARGUMENT
      * </pre>
      */
     public com.proto.calculator.SquareRootResponse squareRoot(com.proto.calculator.SquareRootRequest request) {
@@ -423,6 +426,7 @@ public final class CalculatorServiceGrpc {
      * <pre>
      * Error Handling
      * This RPC will throw an exception if sent number is -ve
+     * The Error Type thrown here will be INVALID_ARGUMENT
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.proto.calculator.SquareRootResponse> squareRoot(
