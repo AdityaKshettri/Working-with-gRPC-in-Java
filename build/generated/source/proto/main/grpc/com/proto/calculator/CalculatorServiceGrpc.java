@@ -45,6 +45,37 @@ public final class CalculatorServiceGrpc {
     return getSumMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.proto.calculator.PrimeNoDecompositionRequest,
+      com.proto.calculator.PrimeNoDecompositionResponse> getPrimeNoDecompositionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "PrimeNoDecomposition",
+      requestType = com.proto.calculator.PrimeNoDecompositionRequest.class,
+      responseType = com.proto.calculator.PrimeNoDecompositionResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.proto.calculator.PrimeNoDecompositionRequest,
+      com.proto.calculator.PrimeNoDecompositionResponse> getPrimeNoDecompositionMethod() {
+    io.grpc.MethodDescriptor<com.proto.calculator.PrimeNoDecompositionRequest, com.proto.calculator.PrimeNoDecompositionResponse> getPrimeNoDecompositionMethod;
+    if ((getPrimeNoDecompositionMethod = CalculatorServiceGrpc.getPrimeNoDecompositionMethod) == null) {
+      synchronized (CalculatorServiceGrpc.class) {
+        if ((getPrimeNoDecompositionMethod = CalculatorServiceGrpc.getPrimeNoDecompositionMethod) == null) {
+          CalculatorServiceGrpc.getPrimeNoDecompositionMethod = getPrimeNoDecompositionMethod =
+              io.grpc.MethodDescriptor.<com.proto.calculator.PrimeNoDecompositionRequest, com.proto.calculator.PrimeNoDecompositionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PrimeNoDecomposition"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.proto.calculator.PrimeNoDecompositionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.proto.calculator.PrimeNoDecompositionResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculatorServiceMethodDescriptorSupplier("PrimeNoDecomposition"))
+              .build();
+        }
+      }
+    }
+    return getPrimeNoDecompositionMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -100,6 +131,13 @@ public final class CalculatorServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSumMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void primeNoDecomposition(com.proto.calculator.PrimeNoDecompositionRequest request,
+        io.grpc.stub.StreamObserver<com.proto.calculator.PrimeNoDecompositionResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPrimeNoDecompositionMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -109,6 +147,13 @@ public final class CalculatorServiceGrpc {
                 com.proto.calculator.SumRequest,
                 com.proto.calculator.SumResponse>(
                   this, METHODID_SUM)))
+          .addMethod(
+            getPrimeNoDecompositionMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                com.proto.calculator.PrimeNoDecompositionRequest,
+                com.proto.calculator.PrimeNoDecompositionResponse>(
+                  this, METHODID_PRIME_NO_DECOMPOSITION)))
           .build();
     }
   }
@@ -134,6 +179,14 @@ public final class CalculatorServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSumMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void primeNoDecomposition(com.proto.calculator.PrimeNoDecompositionRequest request,
+        io.grpc.stub.StreamObserver<com.proto.calculator.PrimeNoDecompositionResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getPrimeNoDecompositionMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -155,6 +208,14 @@ public final class CalculatorServiceGrpc {
     public com.proto.calculator.SumResponse sum(com.proto.calculator.SumRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSumMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<com.proto.calculator.PrimeNoDecompositionResponse> primeNoDecomposition(
+        com.proto.calculator.PrimeNoDecompositionRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getPrimeNoDecompositionMethod(), getCallOptions(), request);
     }
   }
 
@@ -182,6 +243,7 @@ public final class CalculatorServiceGrpc {
   }
 
   private static final int METHODID_SUM = 0;
+  private static final int METHODID_PRIME_NO_DECOMPOSITION = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -203,6 +265,10 @@ public final class CalculatorServiceGrpc {
         case METHODID_SUM:
           serviceImpl.sum((com.proto.calculator.SumRequest) request,
               (io.grpc.stub.StreamObserver<com.proto.calculator.SumResponse>) responseObserver);
+          break;
+        case METHODID_PRIME_NO_DECOMPOSITION:
+          serviceImpl.primeNoDecomposition((com.proto.calculator.PrimeNoDecompositionRequest) request,
+              (io.grpc.stub.StreamObserver<com.proto.calculator.PrimeNoDecompositionResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -266,6 +332,7 @@ public final class CalculatorServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new CalculatorServiceFileDescriptorSupplier())
               .addMethod(getSumMethod())
+              .addMethod(getPrimeNoDecompositionMethod())
               .build();
         }
       }
