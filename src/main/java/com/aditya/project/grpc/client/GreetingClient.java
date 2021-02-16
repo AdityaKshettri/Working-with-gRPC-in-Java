@@ -1,7 +1,6 @@
 package com.aditya.project.grpc.client;
 
-import com.proto.greet.GreetRequest;
-import com.proto.greet.GreetResponse;
+import com.proto.greet.GreetManyTimesRequest;
 import com.proto.greet.GreetServiceGrpc;
 import com.proto.greet.Greeting;
 import io.grpc.ManagedChannel;
@@ -30,14 +29,26 @@ public class GreetingClient {
                 .setLastName("Kshettri")
                 .build();
 
-        // Created a GreetRequest
-        GreetRequest request = GreetRequest.newBuilder()
+//        // Created a GreetRequest
+//        GreetRequest request = GreetRequest.newBuilder()
+//                .setGreeting(greeting)
+//                .build();
+//
+//        // Call the RPC and get the GreetResponse
+//        GreetResponse response = greetClient.greet(request);
+//        System.out.println(response.getResult());
+
+        // Server Streaming
+        // We prepare the request
+        GreetManyTimesRequest request = GreetManyTimesRequest.newBuilder()
                 .setGreeting(greeting)
                 .build();
 
-        // Call the RPC and get the GreetResponse
-        GreetResponse response = greetClient.greet(request);
-        System.out.println(response.getResult());
+        // We stream the response
+        greetClient.greetManyTimes(request)
+                .forEachRemaining(response -> {
+                    System.out.println(response.getResult());
+                });
 
         System.out.println("Shutting down channel!");
         channel.shutdown();
