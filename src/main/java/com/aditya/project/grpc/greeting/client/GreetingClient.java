@@ -121,10 +121,10 @@ public class GreetingClient {
         // Streaming message #1
         System.out.println("Sending message 1");
         requestObserver.onNext(LongGreetRequest.newBuilder()
-            .setGreeting(Greeting.newBuilder()
-                .setFirstName("Aditya")
-                .build())
-            .build());
+                .setGreeting(Greeting.newBuilder()
+                        .setFirstName("Aditya")
+                        .build())
+                .build());
 
         // Streaming message #2
         System.out.println("Sending message 2");
@@ -183,10 +183,10 @@ public class GreetingClient {
                 .forEach(name -> {
                     System.out.println("Sending : " + name);
                     requestObserver.onNext(GreetEveryoneRequest.newBuilder()
-                        .setGreeting(Greeting.newBuilder()
-                            .setFirstName(name)
-                            .build())
-                        .build());
+                            .setGreeting(Greeting.newBuilder()
+                                    .setFirstName(name)
+                                    .build())
+                            .build());
                     // Checking the asynchronous behaviour below
                     try {
                         Thread.sleep(1000);
@@ -226,7 +226,7 @@ public class GreetingClient {
                     .greetWithDeadline(request);
             System.out.println(response.getResult());
         } catch (StatusRuntimeException e) {
-            if(e.getStatus() == Status.DEADLINE_EXCEEDED) {
+            if (e.getStatus() == Status.DEADLINE_EXCEEDED) {
                 System.out.println("Deadline exceeded! We don't want the response");
             } else {
                 e.printStackTrace();
@@ -239,7 +239,7 @@ public class GreetingClient {
                     .greetWithDeadline(request);
             System.out.println(response.getResult());
         } catch (StatusRuntimeException e) {
-            if(e.getStatus() == Status.DEADLINE_EXCEEDED) {
+            if (e.getStatus() == Status.DEADLINE_EXCEEDED) {
                 System.out.println("Deadline exceeded! We don't want the response");
             } else {
                 e.printStackTrace();

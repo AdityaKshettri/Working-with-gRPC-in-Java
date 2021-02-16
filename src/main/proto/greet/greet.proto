@@ -15,7 +15,7 @@ message GreetRequest {
 }
 
 message GreetResponse {
-  string result =1;
+  string result = 1;
 }
 
 message GreetManyTimesRequest {
@@ -23,7 +23,7 @@ message GreetManyTimesRequest {
 }
 
 message GreetManyTimesResponse {
-  string result =1;
+  string result = 1;
 }
 
 message LongGreetRequest {
@@ -31,7 +31,7 @@ message LongGreetRequest {
 }
 
 message LongGreetResponse {
-  string result =1;
+  string result = 1;
 }
 
 message GreetEveryoneRequest {
@@ -39,7 +39,7 @@ message GreetEveryoneRequest {
 }
 
 message GreetEveryoneResponse {
-  string result =1;
+  string result = 1;
 }
 
 message GreetWithDeadlineRequest {
@@ -47,7 +47,7 @@ message GreetWithDeadlineRequest {
 }
 
 message GreetWithDeadlineResponse {
-  string result =1;
+  string result = 1;
 }
 
 service GreetService {

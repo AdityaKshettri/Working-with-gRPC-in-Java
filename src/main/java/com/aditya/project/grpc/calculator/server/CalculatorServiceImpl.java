@@ -29,9 +29,9 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
     public void primeNoDecomposition(PrimeNoDecompositionRequest request, StreamObserver<PrimeNoDecompositionResponse> responseObserver) {
         int number = request.getNumber();
         int divisor = 2;
-        while(number>1) {
-            if(number % divisor == 0) {
-                number = number/divisor;
+        while (number > 1) {
+            if (number % divisor == 0) {
+                number = number / divisor;
                 responseObserver.onNext(PrimeNoDecompositionResponse.newBuilder()
                         .setPrimeFactor(divisor)
                         .build());
@@ -47,18 +47,21 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
         return new StreamObserver<ComputeAverageRequest>() {
             int sum = 0;
             int count = 0;
+
             @Override
             public void onNext(ComputeAverageRequest value) {
                 sum += value.getNumber();
                 count += 1;
             }
+
             @Override
             public void onError(Throwable t) {
                 //do nothing for now
             }
+
             @Override
             public void onCompleted() {
-                double average = (double) sum/count;
+                double average = (double) sum / count;
                 responseObserver.onNext(ComputeAverageResponse.newBuilder()
                         .setAverage(average)
                         .build());
@@ -71,20 +74,23 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
     public StreamObserver<FindMaximumRequest> findMaximum(StreamObserver<FindMaximumResponse> responseObserver) {
         return new StreamObserver<FindMaximumRequest>() {
             int currentMaximum = 0;
+
             @Override
             public void onNext(FindMaximumRequest value) {
                 int currentNo = value.getNumber();
-                if(currentNo > currentMaximum) {
+                if (currentNo > currentMaximum) {
                     currentMaximum = currentNo;
                     responseObserver.onNext(FindMaximumResponse.newBuilder()
                             .setMaximum(currentMaximum)
                             .build());
                 }
             }
+
             @Override
             public void onError(Throwable t) {
                 responseObserver.onCompleted();
             }
+
             @Override
             public void onCompleted() {
                 responseObserver.onNext(FindMaximumResponse.newBuilder()
@@ -98,7 +104,7 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
     @Override
     public void squareRoot(SquareRootRequest request, StreamObserver<SquareRootResponse> responseObserver) {
         int number = request.getNumber();
-        if(number>=0) {
+        if (number >= 0) {
             double numberRoot = Math.sqrt(number);
             responseObserver.onNext(SquareRootResponse.newBuilder()
                     .setNumberRoot(numberRoot)

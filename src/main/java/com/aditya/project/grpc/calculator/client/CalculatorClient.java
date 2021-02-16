@@ -66,10 +66,12 @@ public class CalculatorClient {
                 System.out.println("Received Response from server.");
                 System.out.println("Average : " + value.getAverage());
             }
+
             @Override
             public void onError(Throwable t) {
                 // do nothing for now
             }
+
             @Override
             public void onCompleted() {
                 System.out.println("Server has completed sending us data.");
@@ -79,8 +81,8 @@ public class CalculatorClient {
         StreamObserver<ComputeAverageRequest> requestObserver = asyncClient.computeAverage(responseObserver);
         Arrays.asList(1, 2, 3, 4)
                 .forEach(number -> requestObserver.onNext(ComputeAverageRequest.newBuilder()
-                    .setNumber(number)
-                    .build()));
+                        .setNumber(number)
+                        .build()));
         requestObserver.onCompleted();
         try {
             latch.await(3, TimeUnit.SECONDS);
@@ -97,10 +99,12 @@ public class CalculatorClient {
             public void onNext(FindMaximumResponse value) {
                 System.out.println("Got new max from server : " + value.getMaximum());
             }
+
             @Override
             public void onError(Throwable t) {
                 latch.countDown();
             }
+
             @Override
             public void onCompleted() {
                 System.out.println("Server is done sending data.");

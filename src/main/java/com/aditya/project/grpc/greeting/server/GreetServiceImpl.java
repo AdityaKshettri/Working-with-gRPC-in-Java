@@ -115,8 +115,8 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
     public void greetWithDeadline(GreetWithDeadlineRequest request, StreamObserver<GreetWithDeadlineResponse> responseObserver) {
         Context current = Context.current();
         try {
-            for(int i=0;i<3;i++) {
-                if(!current.isCancelled()) {
+            for (int i = 0; i < 3; i++) {
+                if (!current.isCancelled()) {
                     System.out.println("Sleep for 100ms");
                     Thread.sleep(100);
                 } else {
