@@ -1,4 +1,4 @@
-package com.aditya.project.grpc.server;
+package com.aditya.project.grpc.greeting.server;
 
 import com.proto.greet.GreetEveryoneRequest;
 import com.proto.greet.GreetEveryoneResponse;
