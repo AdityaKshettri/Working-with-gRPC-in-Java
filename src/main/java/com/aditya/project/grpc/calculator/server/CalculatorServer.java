@@ -13,6 +13,7 @@ public class CalculatorServer {
                 .build();
 
         server.start();
+        System.out.println("Server Started!");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Received Shutdown Request");

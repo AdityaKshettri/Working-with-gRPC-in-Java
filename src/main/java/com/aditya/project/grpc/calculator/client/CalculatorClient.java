@@ -6,10 +6,13 @@ import com.proto.calculator.ComputeAverageResponse;
 import com.proto.calculator.FindMaximumRequest;
 import com.proto.calculator.FindMaximumResponse;
 import com.proto.calculator.PrimeNoDecompositionRequest;
+import com.proto.calculator.SquareRootRequest;
+import com.proto.calculator.SquareRootResponse;
 import com.proto.calculator.SumRequest;
 import com.proto.calculator.SumResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
 import java.util.Arrays;
@@ -27,10 +30,11 @@ public class CalculatorClient {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
                 .usePlaintext()
                 .build();
-        //doUnaryCall(channel);
-        //doStreamingServerCall(channel);
-        //doStreamingClientCall(channel);
-        doBiDiStreamingCall(channel);
+        // doUnaryCall(channel);
+        // doStreamingServerCall(channel);
+        // doStreamingClientCall(channel);
+        // doBiDiStreamingCall(channel);
+        doErrorCall(channel);
         channel.shutdown();
     }
 
@@ -119,6 +123,21 @@ public class CalculatorClient {
         try {
             latch.await(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doErrorCall(ManagedChannel channel) {
+        CalculatorServiceGrpc.CalculatorServiceBlockingStub syncClient = CalculatorServiceGrpc.newBlockingStub(channel);
+        int number = -1;
+        SquareRootRequest request = SquareRootRequest.newBuilder()
+                .setNumber(number)
+                .build();
+        try {
+            SquareRootResponse response = syncClient.squareRoot(request);
+            System.out.println("Square Root : " + response.getNumberRoot());
+        } catch (StatusRuntimeException e) {
+            System.out.println("Got an exception for Square Root!");
             e.printStackTrace();
         }
     }
